@@ -1,12 +1,14 @@
+#!/usr/bin/env python
+
 import os
 import cv2
 import numpy as np
 
 IMG_CONTAINER = "AncientRunes.jpg"
 
-def _do_match(template):
+def _do_match(template, container=IMG_CONTAINER):
     print("Matching {} in {}".format(template, IMG_CONTAINER))
-    img_container = cv2.imread(IMG_CONTAINER)
+    img_container = cv2.imread(container)
     img_template = cv2.imread(template)
     h, w = img_template.shape[:-1]
     res = cv2.matchTemplate(img_container, img_template, cv2.TM_CCOEFF_NORMED)
@@ -20,5 +22,8 @@ def _do_match(template):
 
 if __name__ == "__main__":
     import sys
-    _do_match(sys.argv[1])
+    if len(sys.argv) == 3:
+        _do_match(sys.argv[1], sys.argv[2])
+    else:
+        _do_match(sys.argv[1])
 
