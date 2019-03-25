@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 import cv2
@@ -7,12 +7,12 @@ import numpy as np
 IMG_CONTAINER = "AncientRunes.jpg"
 
 def _do_match(template, container=IMG_CONTAINER):
-    print("Matching {} in {}".format(template, IMG_CONTAINER))
+    print("Matching {} in {}".format(template, container))
     img_container = cv2.imread(container)
     img_template = cv2.imread(template)
     h, w = img_template.shape[:-1]
     res = cv2.matchTemplate(img_container, img_template, cv2.TM_CCOEFF_NORMED)
-    threshold = .9
+    threshold = .95
     loc = np.where(res >= threshold)
     for pt in zip(*loc[::-1]):
         cv2.rectangle(img_container, pt, (pt[0] + w, pt[1] + h), (0, 0 , 255), 2) 
