@@ -13,3 +13,4 @@ do
         last_processed="$file"
     fi
 done
+#python3 find_img_match.py "$file" "res_$(echo ${last_processed:2}).jpg"
