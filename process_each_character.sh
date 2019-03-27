@@ -1,5 +1,6 @@
 #!/bin/bash
-for file in $(find -name "*.png");
+
+for file in $(find -name "characters/*.png");
 do
-    python3 find_img_match.py $file
+    /usr/bin/python3 find_img_match.py $file
 done

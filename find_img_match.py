@@ -34,6 +34,7 @@ MATCH_TEST = {
 def _do_match(template, container=IMG_CONTAINER):
     match_index = template.replace(".png", "")
     match_index = match_index.replace("./", "")
+    match_index = match_index.replace("characters/", "")
     if MATCH_TEST[match_index] == '':
         print("Skipping {}, no guess".format(match_index))
         sys.exit(1)
