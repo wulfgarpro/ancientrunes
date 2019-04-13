@@ -9,10 +9,11 @@ do
 done
 
 TOTAL=$(awk '{sum += $2} END {print sum}' "$STATS")
+echo "TOTAL IS $TOTAL"
 echo -e "\n" >> "$STATS"
 # TODO: how to use stats variable, which has a ., in awk
 #/usr/bin/awk -v TOTAL="$TOTAL" STATS="$STATS" {'print $1"\t"$2 / TOTAL * 100 >> "STATS"'} "$STATS"
-/usr/bin/awk -v TOTAL="$TOTAL" {'print $1"\t"$2 / TOTAL * 100 >> "statistics.out"'} "$STATS"
+/usr/bin/awk -v TOTAL="$TOTAL" {'if($1 && $2 != "") { print $1"\t"$2 / TOTAL * 100 >> "statistics.out" }'} "$STATS"
 echo "See statistics.out"
 
 # TODO: order results
